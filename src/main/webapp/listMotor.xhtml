@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Listado de Motores:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Lista de motores </span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<h:outputLabel for="nombres" value="Búsqueda"
+						styleClass="control-label" />
+						<p:inputText autocomplete="off" id="nombres"
+							styleClass="form-control"
+							value="#{motorController.motor.nameMotor}" maxlength="120" />
+					</div>
+				</div>
+				
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height: 30px;"></span>
+						<p:commandButton value="Limpiar" update="lstMotor"
+							actionListener="#{motorController.cleanMotor()}"
+							styleClass="btn btn-default" ajax="false" />
+						<p:commandButton value="Buscar" update="lstMotor"
+							actionListener="#{motorController.findByName()}"
+							styleClass="btn btn-default btn-border" ajax="true" />
+						<p:commandButton value="Nuevo"
+							action="#{motorController.newMotor()}"
+							styleClass="btn btn-primary" ajax="false" />
+					</div>
+				</div>
+		</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstMotor" var="mot"
+							value="#{motorController.listMotors}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="5,10,15,20,25,30"
+							rows="5" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{mot.idMotor}">
+								<h:outputText value="#{mot.idMotor}" />
+							</p:column>
+
+							<p:column headerText="Nombre" sortBy="#{mot.nameMotor}">
+								<h:outputText value="#{mot.nameMotor}" />
+							</p:column>
+							<p:column headerText="Fecha "
+								sortBy="#{mot.manufacturingDateMotor}">
+								<h:outputText value="#{mot.manufacturingDateMotor}">
+									<f:convertDateTime pattern="dd-MM-yyyy" timeZone="UTC" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Operación" exportable="false">
+								<h:commandLink action="listMotor" value="Eliminar"
+									actionListener="#{motorController.delete(mot)}" />
+							</p:column>
+
+
+						</p:dataTable>
+						
+						<br />
+						<h:outputLabel value="#{motorController.mensaje}" />
+						<h:commandLink>
+							<p:outputLabel value="Exportar en excel"></p:outputLabel>
+							<p:dataExporter type="xls" target="lstMotor"
+								fileName="ExcelWeb" pageOnly="false" />
+						</h:commandLink>
+						
+						<br />
+						<h:commandLink>
+							<p:outputLabel value="Exportar en pdf"></p:outputLabel>
+							<p:dataExporter type="pdf" target="lstMotor"
+								fileName="PdfWeb" />
+						</h:commandLink>
+					</div>
+
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

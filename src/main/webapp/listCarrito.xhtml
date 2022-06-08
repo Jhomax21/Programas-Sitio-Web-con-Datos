@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Mi Carrito:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Mi Carrito</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstCarritos" var="c"
+							value="#{carritoController.listCarrito}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+							<p:column headerText="Id" sortBy="#{c.idCarrito}">
+								<h:outputText value="#{c.idCarrito}" />
+							</p:column>
+							<p:column headerText="Codigo Producto"
+								sortBy="#{c.product.codigo}">
+								<h:outputText value="#{c.product.codigo}" />
+							</p:column>
+							<p:column headerText="Nombre Producto">
+								<h:outputText value="#{c.product.nombre}" />
+							</p:column>
+
+							<p:column headerText=" ">
+								<h:commandLink action="Pago?faces-redirect=true" value="Pagar"
+									style="text-decoration:none;color:blue;" />
+							</p:column>
+
+							<p:column headerText=" " exportable="false">
+								<h:commandLink action="listCarrito" value="Eliminar"
+									style="text-decoration:none;color:red;"
+									actionListener="#{carritoController.delete(c)}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

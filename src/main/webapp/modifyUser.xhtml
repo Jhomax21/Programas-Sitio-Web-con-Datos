@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="resources/img/favicon.ico" />
+</h:head>
+<body>
+
+	<h:form id="frm">
+		<p:growl id="men" />
+		<center>
+			<h:graphicImage value="/resources/img/auto.jpg" height="15%"
+				width="15%"></h:graphicImage>
+			<br />
+		</center>
+		<br />
+		<div align="center">
+			<h1 style="color: #FF0000">Modificar datos</h1>
+
+			<br />
+			<f:facet name="header">Modificar datos</f:facet>
+			<h:panelGrid id="pg" columns="4">
+				<p:outputLabel for="txtName" value="Nombres" />
+				<p:inputText id="txtName"
+					value="#{userController.user.customer.name}" required="true"
+					styleClass="form-control" />
+				<h:column />
+
+				<br />
+				<p:outputLabel for="txtAddress" value="Dirección" />
+				<p:inputText id="txtAddress"
+					value="#{userController.user.customer.address}" counter="display"
+					rows="5" cols="30" maxlength="250"
+					counterTemplate="{0} caracteres restantes." autoResize="false"
+					required="true" styleClass="form-control" />
+				<h:message for="txtAddress" display="text" />
+				<h:column />
+
+
+				<p:outputLabel for="txtDni" value="Dni" />
+				<p:inputText id="txtDni" value="#{userController.user.customer.dni}"
+					counter="display" rows="5" cols="30" maxlength="8"
+					counterTemplate="{0} caracteres restantes." autoResize="false"
+					required="true" styleClass="form-control" />
+				<h:message for="txtDni" display="text" />
+				<h:column />
+
+
+				<p:outputLabel for="txtPlaca" value="Placa" />
+				<p:inputText id="txtPlaca"
+					value="#{userController.user.customer.placa}" counter="display"
+					rows="5" cols="30" maxlength="6"
+					counterTemplate="{0} caracteres restantes." autoResize="false"
+					required="true" styleClass="form-control" />
+				<p:message for="txtPlaca" display="text" />
+				<h:column />
+
+				<h:column />
+				<h:column />
+				<h:outputText id="display" />
+				<h:column />
+				<h:column />
+
+			</h:panelGrid>
+			<p:commandButton value="Actualizar"
+				actionListener="#{userController.update()}"
+				action="Cuenta?faces-redirect=true" update="@form"
+				styleClass="btn btn-primary" />
+			<p:commandButton value="Regresar" action="Cuenta?faces-redirect=true"
+				immediate="true" styleClass="btn btn-danger" />
+
+		</div>
+	</h:form>
+
+</body>
+</html>

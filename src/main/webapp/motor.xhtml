@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Motores:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Motor</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<div>
+				<h:outputLabel for="idMotor" value="Id " styleClass="control-label" />
+				<p:inputText autocomplete="off" id="idMotor"
+					styleClass="form-control" value="#{motorController.motor.idMotor}"
+					required="true" />
+
+				<h:outputLabel for="nombreMotor" value="Nombres "
+					styleClass="control-label" />
+				<p:inputText autocomplete="off" id="nombreMotor"
+					styleClass="form-control"
+					value="#{motorController.motor.nameMotor}" maxlength="30"
+					required="true" requiredMessage="Nombre vacío*"></p:inputText>
+				<p:message for="nombreMotor" style="color:red" />
+
+
+
+
+				<h:outputLabel for="fechaMotor" value="Fecha "
+					styleClass="control-label" />
+				<p:calendar id="fechaMotor" pattern="dd/MM/yyyy"
+					value="#{motorController.motor.manufacturingDateMotor}"
+					showOn="button" timeZone="UTC" required="true"
+					requiredMessage="fecha vacía">
+				</p:calendar>
+				<p:message for="fechaMotor" style="color:red" />
+
+				<br />
+
+
+				<p:commandButton value="Grabar"
+					actionListener="#{motorController.insert()}"
+					styleClass="btn btn-primary " update="@form"
+					action="listMotor?faces-redirect=true" />
+
+
+				<p:commandButton value="Cancelar" action="motor?faces-redirect=true"
+					immediate="true" styleClass="btn btn-default" ajax="false" />
+			</div>
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+	<ui:define name="title">
+        .:Listado de Productos:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Lista de productos</span>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<h:outputLabel for="nombres" value="Búsqueda por nombre"
+							styleClass="control-label" />
+						<p:inputText autocomplete="off" id="nombres"
+							styleClass="form-control"
+							value="#{productController.product.nombre}" maxlength="120" />
+					</div>
+				</div>
+
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height: 30px;"></span>
+						<p:commandButton value="Limpiar" update="lstProduct"
+							actionListener="#{productController.cleanProduct()}"
+							styleClass="btn btn-danger" ajax="false" />
+						<p:commandButton value="Buscar" update="lstProduct"
+							actionListener="#{productController.findByName()}"
+							styleClass="btn btn-default btn-border" ajax="true" />
+						<p:commandButton value="Nuevo"
+							action="#{productController.newProduct()}"
+							styleClass="btn btn-primary" ajax="false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstProduct" var="pro"
+							value="#{productController.listProducts}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="5,10,15,20,25,30"
+							rows="5" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{pro.idProduct}">
+								<h:outputText value="#{pro.idProduct}" />
+							</p:column>
+
+							<p:column headerText="Codigo" sortBy="#{pro.codigo}">
+								<h:outputText value="#{pro.codigo}" />
+							</p:column>
+
+							<p:column headerText="Nombre" sortBy="#{pro.nombre}">
+								<h:outputText value="#{pro.nombre}" />
+							</p:column>
+
+							<p:column headerText="Cantidad mercancía"
+								sortBy="#{pro.cantidad_mercancia}">
+								<h:outputText value="#{pro.cantidad_mercancia}" />
+							</p:column>
+
+							<p:column headerText="Precio unitario"
+								sortBy="#{pro.precio_unitario}">
+								<h:outputText value="#{pro.precio_unitario}" />
+							</p:column>
+
+							<p:column headerText="Descripcion del producto"
+								sortBy="#{pro.descripcion_producto}">
+								<h:outputText value="#{pro.descripcion_producto}" />
+							</p:column>
+
+							<p:column headerText=" ">
+								<h:commandLink action="#{productController.preUpdate(pro)}"
+									value="Modificar" style="text-decoration:none;color:blue;"/>
+							</p:column>
+
+							<p:column headerText=" " exportable="false">
+								<h:commandLink action="listProduct" value="Eliminar" style="text-decoration:none;color:red;"
+									actionListener="#{productController.delete(pro)}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

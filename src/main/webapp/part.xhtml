@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+	<f:event listener="#{masterController.verificarSesion()}"
+		type="preRenderView" />
+	<ui:define name="title">
+        .:Parts of Motors:.
+    </ui:define>
+	<ui:define name="titleCont">
+		<span>Part</span>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+		
+			<div class="col-sm-8 text-right">
+				<div class="form-group box-main-btn">
+					<span style="display: block; height: 30px;"></span>
+					<p:commandButton value="Limpiar" update="lstPart"
+						actionListener="#{partController.cleanPart()}"
+						styleClass="btn btn-default" ajax="false"/>
+				</div>
+			</div>
+			
+			<h:outputLabel for="idPart" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idPart" styleClass="form-control"
+				value="#{partController.part.idPart}" required="true" />
+			<h:outputLabel for="descriptionPart" value="Nombres "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="descriptionPart"
+				styleClass="form-control"
+				value="#{partController.part.descriptionPart}" maxlength="30"
+				required="true" />
+				
+			<p:outputLabel for="cboMotor" value="Motor" />
+			<p:selectOneMenu id="cboMotor" value="#{partController.part.motor}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{partController.listMotors}" var="m"
+					itemLabel="#{m.nameMotor}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{partController.insert()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listPart?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listPart?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

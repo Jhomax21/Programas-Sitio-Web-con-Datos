@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+	<ui:define name="title">
+        .:Carrito:.
+    </ui:define>
+	<ui:define name="titleCont">
+		<span>Agregar a Carrito</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<div>
+				<h:outputLabel for="idCarrito" value="Id "
+					styleClass="control-label" />
+				<p:inputText autocomplete="off" id="idCarrito"
+					styleClass="form-control"
+					value="#{carritoController.carrito.idCarrito}" required="true" />
+
+				<br />
+				<h:outputLabel value="Nombre producto " for="cboProducto"
+					styleClass="control-label" />
+				<p:selectOneMenu id="cboProducto"
+					value="#{carritoController.carrito.product}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItems value="#{carritoController.listProduct}" var="car"
+						itemLabel="#{car.nombre}" itemValue="#{car}" />
+				</p:selectOneMenu>
+				<br />
+				<h:outputLabel value="Cantidad " for="cboCantidad"
+					styleClass="control-label" />
+				<p:selectOneMenu id="cboCantidad"
+					value="#{carritoController.carrito.product}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItems value="#{carritoController.listProduct}" var="car"
+						itemLabel="#{car.cantidad_mercancia}" itemValue="#{car}" />
+				</p:selectOneMenu>
+				<br />
+				<p:commandButton value="Agregar"
+					actionListener="#{carritoController.insert()}"
+					styleClass="btn btn-primary " update="@form"
+					action="listCarrito?faces-redirect=true" />
+				<p:commandButton value="Cancelar"
+					action="userProduct?faces-redirect=true" immediate="true"
+					styleClass="btn btn-danger" ajax="false" />
+			</div>
+		</h:form>
+	</ui:define>
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

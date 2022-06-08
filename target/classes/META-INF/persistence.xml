@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="migracionPU"
+		transaction-type="JTA">
+		<jta-data-source>java:/autopiezaDS</jta-data-source>
+		<class>pe.edu.upc.entity.Rol</class>
+		<class>pe.edu.upc.entity.Motor</class>
+		<class>pe.edu.upc.entity.Part</class>
+		<class>pe.edu.upc.entity.User</class>
+		<class>pe.edu.upc.entity.UserRol</class>
+		<class>pe.edu.upc.entity.Customer</class>
+		<class>pe.edu.upc.entity.Product</class>
+		<class>pe.edu.upc.entity.Carrito</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="update" />
+		</properties>
+	</persistence-unit>
+</persistence>
+

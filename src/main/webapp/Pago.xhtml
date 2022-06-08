@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="resources/img/favicon.ico" />
+</h:head>
+<body>
+
+	<h:form id="frm">
+		<p:growl id="men" />
+		<center>
+			<h1>Cuentas bancarias</h1>
+			<h2>Deposita a una de nuestras cuentas y envíanos el voucher al
+				por whatsapp</h2>
+			<br />
+			<h:graphicImage value="/resources/img/bcp.jpg" height="15%"
+				width="15%"></h:graphicImage>
+			<h3 style="color: #FF0000">Ahorros: 144-2611548-0-11</h3>
+			<h3 style="color: #FF0000">CCI: 000-144-002611548011-32</h3>
+			<br />
+			<h:graphicImage value="/resources/img/bbva.jpg" height="15%"
+				width="15%"></h:graphicImage>
+			<h3 style="color: #FF0000">Ahorros:487-1574648-2-11</h3>
+			<h3 style="color: #FF0000">CCI:001-487-011574648211-10</h3>
+			<h:graphicImage value="/resources/img/interbank.png" height="15%"
+				width="15%"></h:graphicImage>
+			<h3 style="color: #FF0000">Ahorros:742-1234857-3-59</h3>
+			<h3 style="color: #FF0000">CCI:002-742-021234857359-80</h3>
+		</center>
+		<br />
+		<div align="center">
+			<h:graphicImage value="/resources/img/wsp.jpg" height="15%"
+				width="15%"></h:graphicImage>
+			<h3 style="color: #FF0000">+51 951234875</h3>
+
+			<div class="col-sm-8 text-right">
+				<div class="form-group box-main-btn">
+					<span style="display: block; height: 30px;"></span>
+					<p:commandButton value="Regresar"
+						action="listCarrito?faces-redirect=true" immediate="true"
+						styleClass="btn btn-danger" />
+				</div>
+			</div>
+
+		</div>
+	</h:form>
+
+</body>
+</html>

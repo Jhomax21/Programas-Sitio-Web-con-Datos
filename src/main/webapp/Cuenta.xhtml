@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Mi cuenta:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Cuenta</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:dataTable id="idenCustomer" value="#{userController.user}"
+				var="us" rowIndexVar="item">
+
+				<p:column headerText="Id">
+					<h:outputText value="#{us.customer.id}" />
+				</p:column>
+				
+				<p:column headerText="Nombres">
+					<h:outputText value="#{us.customer.name}" />
+				</p:column>
+				
+				<p:column headerText="Direccion">
+					<h:outputText value="#{us.customer.address}" />
+				</p:column>
+				
+				<p:column headerText="DNI">
+					<h:outputText value="#{us.customer.dni}" />
+				</p:column>
+				
+				<p:column headerText="Placa">
+					<h:outputText value="#{us.customer.placa}" />
+				</p:column>
+				
+				<p:column headerText="">
+					<h:commandLink action="#{userController.preUpdate(us)}"
+						value="Modificar" style="text-decoration:none;color:blue;"/>
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

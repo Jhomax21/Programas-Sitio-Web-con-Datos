@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+	<ui:define name="title">
+        .:Modificar Producto:.
+    </ui:define>
+	<ui:define name="titleCont">
+		<span>Modificar producto</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<div>
+				<h:outputLabel for="idProduct" value="Id "
+					styleClass="control-label" />
+				<p:inputText autocomplete="off" id="idProduct"
+					styleClass="form-control"
+					value="#{productController.product.idProduct}" required="true" />
+
+				<br />
+				<h:outputLabel for="codigoProduct" value="Codigo "
+					styleClass="control-label" />
+				<p:inputText autocomplete="off" id="codigoProduct"
+					styleClass="form-control"
+					value="#{productController.product.codigo}" maxlength="5"
+					required="true" requiredMessage="Codigo vacío*"></p:inputText>
+				<p:message for="codigoProduct" style="color:red" />
+
+				<br />
+				<h:outputLabel for="nombreProduct" value="Nombres "
+					styleClass="control-label" />
+				<p:inputText autocomplete="off" id="nombreProduct"
+					styleClass="form-control"
+					value="#{productController.product.nombre}" maxlength="30"
+					required="true" requiredMessage="Nombre vacío*"></p:inputText>
+				<p:message for="nombreProduct" style="color:red" />
+
+				<br />
+				<p:outputLabel for="Cant_Merca" value="Cantidad de Mercancía"
+					styleClass="control-label" />
+				<p:selectOneMenu id="Cant_Merca"
+					value="#{productController.product.cantidad_mercancia}">
+					<f:selectItem itemLabel="1" itemValue="1" />
+					<f:selectItem itemLabel="2" itemValue="2" />
+					<f:selectItem itemLabel="3" itemValue="3" />
+					<f:selectItem itemLabel="4" itemValue="4" />
+					<f:selectItem itemLabel="5" itemValue="5" />
+				</p:selectOneMenu>
+
+				<br />
+				<h:outputLabel for="precioProduct" value="Precio S/. "
+					styleClass="control-label" />
+				<p:inputText autocomplete="off" id="precioProduct"
+					styleClass="form-control"
+					value="#{productController.product.precio_unitario}" maxlength="30"
+					required="true" requiredMessage="Precio vacío*"></p:inputText>
+				<p:message for="precioProduct" style="color:red" />
+
+				<br />
+				<h:outputLabel for="descriProduct" value="Descripcion "
+					styleClass="control-label" />
+				<p:inputText autocomplete="off" id="descriProduct"
+					styleClass="form-control"
+					value="#{productController.product.descripcion_producto}"
+					maxlength="250" required="true"
+					requiredMessage="Descripción vacío*"></p:inputText>
+				<p:message for="descriProduct" style="color:red" />
+
+				<p:commandButton value="Actualizar"
+					actionListener="#{productController.update()}"
+					styleClass="btn btn-primary " update="@form"
+					action="listProduct?faces-redirect=true" />
+
+
+				<p:commandButton value="Cancelar"
+					action="listProduct?faces-redirect=true" immediate="true"
+					styleClass="btn btn-danger" ajax="false" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
